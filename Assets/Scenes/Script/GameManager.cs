@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     }
 
 	public int 			PlayerHP;
+	public int			PlayerE;
+	public int			maxE;
+	public int			regenE;
 	public GameObject	spawner;
 	public GameObject	ennemies;
 	public int			nbrEnn;

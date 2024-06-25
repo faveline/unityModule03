@@ -12,6 +12,7 @@ public class turrets : MonoBehaviour
 	private int			iMin;
 	private float		tmp;
 	public GameObject	bullet;
+	public int			energyCost;
 
     void Start() {
 		iSpeed = 0;
