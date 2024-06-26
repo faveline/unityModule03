@@ -24,10 +24,9 @@ public class ennemy : MonoBehaviour
 	
     void Update()
     {
-        transform.position += (basePos - transform.position).normalized * speed;
+        transform.position += (basePos - transform.position).normalized * speed * Time.deltaTime;
 		if (Vector3.Distance(transform.position, basePos) < 0.1) {
 			GameManager.Instance.DecreasePlayerHP(atk);
-			GameManager.Instance.nbrEnn--;
 			Destroy(gameObject);
 		}
     }

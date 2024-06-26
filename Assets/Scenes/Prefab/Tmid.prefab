@@ -47,12 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d424688e5f677368eb70a0695c7f406c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
+  fireRate: 1
   damage: 0.15
   range: 0.5
   bullet: {fileID: 6571647422373878265, guid: ce0901a30f54b8b3dbaabcd43192a905, type: 3}
   energyCost: 30
-  circleRange: {fileID: 7233179125417729854, guid: 894562c04f158c65ab089462580af39e, type: 3}
 --- !u!212 &7451890678051466197
 SpriteRenderer:
   m_ObjectHideFlags: 0

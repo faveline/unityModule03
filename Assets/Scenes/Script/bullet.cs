@@ -19,12 +19,11 @@ public class bullet : MonoBehaviour
 			Destroy(gameObject);
 		else
 			cpy = target.transform.position;
-        transform.position += (cpy - transform.position).normalized * speed;
+        transform.position += (cpy - transform.position).normalized * speed * Time.deltaTime;
 		if (Vector3.Distance(transform.position, cpy) < 0.1) {
 			ennemy tmp = target.GetComponent<ennemy>();
 			tmp.HP -= atk * atkTurret * GameManager.Instance.multiAtk;
 			if (tmp.HP <= 0) {
-				GameManager.Instance.nbrEnn--;
 				if (target)
 					Destroy(target);
 			}

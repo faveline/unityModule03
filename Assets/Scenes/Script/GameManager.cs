@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
 	public int			regenE;
 	public GameObject	spawner;
 	public GameObject	ennemies;
-	public int			nbrEnn;
 	public int			multiAtk;
 	public bool			gameOver = false;
 	public bool			targetBool = false;
 	public Collider2D	target;
+	public GameObject	pause;
+	public GameObject	verif;
 
 	public void DecreasePlayerHP(int hitPoints = 1)
 	{
@@ -48,5 +49,17 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Game Over !");
 		Destroy(spawner);
 		Destroy(ennemies);
+	}
+
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (Time.timeScale == 1) {
+				Time.timeScale = 0;
+				pause.SetActive(true);
+			} else {
+				Time.timeScale = 1;
+				pause.SetActive(false);
+			}
+		}
 	}
 }

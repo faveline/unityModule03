@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class EventTriggerPlay : EventTrigger
+public class EventTriggerPauseExitYes : EventTrigger
 {
 	public override void OnPointerClick(PointerEventData data)
 	{
-		SceneManager.LoadScene(1);
+		Destroy(GameManager.Instance.gameObject);
+		Time.timeScale = 1;
+		SceneManager.LoadScene(0);
 	}
 }

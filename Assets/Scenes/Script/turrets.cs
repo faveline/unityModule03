@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class turrets : MonoBehaviour
 {
-	public int			speed;
-	private int			iSpeed;
+	public float		fireRate;
+	private float		nextFire;
 	public float		damage;
 	public float		range;
 	private float		distMin;
@@ -15,16 +15,16 @@ public class turrets : MonoBehaviour
 	public int			energyCost;
 
     void Start() {
-		iSpeed = 0;
+		nextFire = 0f;
     }
 
 	void Update() {
 		if (GameManager.Instance.gameOver)
 			return;
-		if (iSpeed > 0) {
-			iSpeed--;
+		if (Time.time < nextFire) {
 			return ;
 		}
+		nextFire = Time.time + fireRate;
 		distMin = 1000;
         for (int i = 0; i < GameManager.Instance.ennemies.transform.childCount; i++) {
 			tmp = Vector3.Distance(transform.position, GameManager.Instance.ennemies.transform.GetChild(i).gameObject.transform.position);
@@ -34,10 +34,8 @@ public class turrets : MonoBehaviour
 			}
 
 		}
-		if (distMin < range) {
+		if (distMin < range)
 			shoot(iMin);
-			iSpeed = speed;
-		}
     }				
 
 	void shoot(int i) {
@@ -50,11 +48,15 @@ public class turrets : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.layer != 9)
+			return ;
 		GameManager.Instance.targetBool = true;
 		GameManager.Instance.target = other;
     }
 
 	private void OnTriggerExit2D(Collider2D other) {
+		if (other.gameObject.layer != 9)
+			return ;
 		GameManager.Instance.targetBool = false;
 	}
 }

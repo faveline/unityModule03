@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class EventTriggerPlay : EventTrigger
+public class EventTriggerPauseExitNo : EventTrigger
 {
 	public override void OnPointerClick(PointerEventData data)
 	{
-		SceneManager.LoadScene(1);
+		GameManager.Instance.verif.SetActive(false);
 	}
 }

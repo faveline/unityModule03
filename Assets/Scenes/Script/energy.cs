@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class energy : MonoBehaviour
 {
-	private int	regenE;
-	private int	maxE;
-	private int	wait, i_wait;
-	private float tmp1, tmp2;
-	private float width, height;
+	private int		regenE;
+	private int		maxE;
+	private float	wait, nextWait;
+	private float	tmp1, tmp2;
+	private float	width, height;
 
     void Start()
     {
-		wait = 10;
-		i_wait = wait;
+		nextWait = 0f;
+		wait = 0.1f;
 		maxE = GameManager.Instance.maxE;
 		regenE = GameManager.Instance.regenE;
 		tmp1 = maxE;
@@ -27,10 +27,9 @@ public class energy : MonoBehaviour
 
     void Update()
     {
-        i_wait--;
-		if (i_wait > 0)
-			return;
-		i_wait = wait;
+		if (Time.time < nextWait)
+			return ;
+		nextWait = Time.time + wait;
 		if (GameManager.Instance.PlayerE == maxE)
 			return ;
 		if (GameManager.Instance.PlayerE + regenE > maxE) {

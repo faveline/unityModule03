@@ -16,8 +16,7 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 	public GameObject	target;
 	public GameObject	circleRange;
 
-    void Start()
-    {
+    void Start() {
 		tmpE = GameManager.Instance.PlayerE;
 		energyC = thisTurret.GetComponent<turrets>().energyCost;
         img = transform.GetComponent<Image>();
@@ -33,7 +32,6 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 			img.color = new Color(1f, 0f, 0f, 1f * GameManager.Instance.PlayerE / energyC);
 			tmpE = GameManager.Instance.PlayerE;
 		}
-
     }
 
 	public void OnBeginDrag(PointerEventData eventData) {
