@@ -48,4 +48,13 @@ public class turrets : MonoBehaviour
 		cpy.GetComponent<bullet>().atkTurret = damage;
 		cpy.gameObject.transform.parent = transform;
 	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		GameManager.Instance.targetBool = true;
+		GameManager.Instance.target = other;
+    }
+
+	private void OnTriggerExit2D(Collider2D other) {
+		GameManager.Instance.targetBool = false;
+	}
 }

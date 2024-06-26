@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 	public int			nbrEnn;
 	public int			multiAtk;
 	public bool			gameOver = false;
+	public bool			targetBool = false;
+	public Collider2D	target;
 
 	public void DecreasePlayerHP(int hitPoints = 1)
 	{

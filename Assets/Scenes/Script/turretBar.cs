@@ -12,6 +12,9 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 	private int			energyC;
 	private GameObject	toDrag;
 	private bool		canDrag;
+	public GameObject	text;
+	public GameObject	target;
+	public GameObject	circleRange;
 
     void Start()
     {
@@ -37,12 +40,18 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		if (img.color == Color.white) {
 			toDrag.SetActive(true);
 			canDrag = true;
+			circleRange.transform.position = Camera.main.ScreenPointToRay(eventData.position).GetPoint(Vector3.Distance(toDrag.gameObject.transform.position, Camera.main.transform.position));
+			circleRange.transform.position = new Vector3(circleRange.transform.position.x, circleRange.transform.position.y, -1);
+			circleRange.SetActive(true);
 		}
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-		if (canDrag)
+		if (canDrag) {
 			toDrag.transform.position = Camera.main.ScreenPointToRay(eventData.position).GetPoint(Vector3.Distance(toDrag.gameObject.transform.position, Camera.main.transform.position));
+			circleRange.transform.position = Camera.main.ScreenPointToRay(eventData.position).GetPoint(Vector3.Distance(toDrag.gameObject.transform.position, Camera.main.transform.position));
+			circleRange.transform.position = new Vector3(circleRange.transform.position.x, circleRange.transform.position.y, -1);
+		}
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
@@ -50,9 +59,17 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 			return;
 		GameObject	cpy;
 
+		circleRange.SetActive(false);
+		if (!GameManager.Instance.targetBool) {
+			toDrag.SetActive(false);
+			return ;
+		}
 		toDrag.SetActive(false);
 		cpy = Instantiate(thisTurret, toDrag.transform.position, toDrag.transform.rotation);
-		cpy.gameObject.transform.position = new Vector3(cpy.gameObject.transform.position.x, cpy.gameObject.transform.position.y, -1);
+		cpy.gameObject.transform.position = new Vector3(GameManager.Instance.target.transform.position.x, GameManager.Instance.target.transform.position.y, -1);
+		GameManager.Instance.targetBool = false;	
+		Destroy(GameManager.Instance.target);
+		GameManager.Instance.target = null;
 		cpy.gameObject.transform.parent = transform;
 		canDrag = false;
 		GameManager.Instance.PlayerE -= energyC;
@@ -61,13 +78,11 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		}
 	}
 
-	public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("Mouse enter");
+	public void OnPointerEnter(PointerEventData eventData) {
+		text.SetActive(true);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("Mouse exit");
+    public void OnPointerExit(PointerEventData eventData) {
+		text.SetActive(false);
     }
 }
