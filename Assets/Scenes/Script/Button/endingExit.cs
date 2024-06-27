@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class EventTriggerPauseExit : EventTrigger
+public class EventTriggerPauseEndingExit : EventTrigger
 {
 	public override void OnPointerClick(PointerEventData data)
 	{
-		GameManager.Instance.menu = true;
-		GameManager.Instance.verif.SetActive(true);
+		SceneManager.LoadScene(0);
 	}
 }

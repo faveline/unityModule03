@@ -8,6 +8,7 @@ public class EventTriggerPauseExitNo : EventTrigger
 {
 	public override void OnPointerClick(PointerEventData data)
 	{
+		GameManager.Instance.menu = false;
 		GameManager.Instance.verif.SetActive(false);
 	}
 }

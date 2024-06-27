@@ -7,7 +7,6 @@ public class EventTriggerExit : EventTrigger
 {
 	public override void OnPointerClick(PointerEventData data)
 	{
-		Debug.Log("Exit called.");
 		Application.Quit();
 	}
 }
