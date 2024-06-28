@@ -35,7 +35,7 @@ public class turretBar : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     }
 
 	public void OnBeginDrag(PointerEventData eventData) {
-		if (img.color == Color.white) {
+		if (img.color == Color.white && Time.timeScale != 0) {
 			toDrag.SetActive(true);
 			canDrag = true;
 			circleRange.transform.position = Camera.main.ScreenPointToRay(eventData.position).GetPoint(Vector3.Distance(toDrag.gameObject.transform.position, Camera.main.transform.position));

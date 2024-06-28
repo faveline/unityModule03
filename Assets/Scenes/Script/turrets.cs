@@ -50,8 +50,8 @@ public class turrets : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.layer != 9)
 			return ;
-		GameManager.Instance.targetBool = true;
 		GameManager.Instance.target = other;
+		GameManager.Instance.targetBool = true;	
     }
 
 	private void OnTriggerExit2D(Collider2D other) {

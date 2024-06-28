@@ -8103,7 +8103,8 @@ MonoBehaviour:
   ennemy: {fileID: 8459862316756297804, guid: f6a246cc205b31a249a648d1b112019c, type: 3}
   ennemyParent: {fileID: 1590269995}
   palierEnmy1: 30
-  palierEnmy2: 15
+  palierEnmy2: 20
+  nbrEnmy: 40
 --- !u!212 &1351511871
 SpriteRenderer:
   m_ObjectHideFlags: 0
